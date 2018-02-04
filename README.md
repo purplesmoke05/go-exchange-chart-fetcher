@@ -16,7 +16,7 @@ git clone github.com/airking05/go-exchange-chart-fetcher
 |----------------	|-----------------	|--------------	|---------	|------	|
 | Done(99 paris) 	| Done(421 paris) 	| Done(1 pair) 	|         	|      	|
 
-![fetched_data](https://imgur.com/a/RujeJ)
+![fetched_data](https://i.imgur.com/Qt4gUf9.png)
 
 ## How to Use :
 
