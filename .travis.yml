@@ -1,32 +1,31 @@
 language: go
 sudo: false
 go:
-  - 1.8
-  - 1.9
-  - tip
-
+- 1.8
+- 1.9
+- tip
 matrix:
   allow_failures:
-    - go: tip
-
+  - go: tip
 before_install:
-  - curl https://glide.sh/get | sh
-
+- curl https://glide.sh/get | sh
 install:
-  - make glide
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/modocache/gover
-  - go get github.com/mattn/goveralls
-  - go get honnef.co/go/tools/cmd/gosimple
-  - go get honnef.co/go/tools/cmd/staticcheck
-  - go get -v -t ./...
-
+- make glide
+- go get golang.org/x/tools/cmd/cover
+- go get github.com/modocache/gover
+- go get github.com/mattn/goveralls
+- go get honnef.co/go/tools/cmd/gosimple
+- go get honnef.co/go/tools/cmd/staticcheck
+- go get -v -t ./...
 script:
-  - go vet $(go list ./... | grep -v /vendor/)
-  - gosimple $(go list ./... | grep -v /vendor/)
-  - staticcheck $(go list ./... | grep -v /vendor/)
-  - go test -cover -coverpkg github.com/airking05/go-exchange-chart-fetcher -coverprofile go-exchange-chart-fetcher.cov
-
+- go vet $(go list ./... | grep -v /vendor/)
+- gosimple $(go list ./... | grep -v /vendor/)
+- staticcheck $(go list ./... | grep -v /vendor/)
+- go test -cover -coverpkg github.com/airking05/go-exchange-chart-fetcher -coverprofile
+  go-exchange-chart-fetcher.cov
 after_script:
-  - gover
-  - goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
+- gover
+- goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
+env:
+  global:
+    secure: P+6RTWkBgE0l0iqFDcE8O8N+17pnLWCfqEwtImUZ9yqIlqRHa3irWVzYy5gWvgjg9FDSaGEFYhAidISD7nRV9CZilJLKx0vtln7gGaCZRV4Pq6qk9d6MTvsq+If0QLnTIWGp0XBuGu1w3KvYvVwQpdwSUIeQf9rb2w4OKxxO4vXvirpOetT1241huo0QICjj6rSDKnkQueYfiNLo74gyowFSdSmQCMc+3Xlzfx8lP0uU59WDXPx4ie+pREN6fbxVpEwjp7TqowGfHzP1L6P4qzBRNF9yPSaZhgoaTaMTp+FMrrfU9yz5GCpx6I2VF8i4J9fSgV05ceSYQWhbIo4W8WEXmdYIoXvVpHNPOWap+HXp0gVZNPuKkMinG6uCB1f28pR9iQ+LmA94JQNEgEmOUaOlL+Wl8c7jrqvt+im7qkSN6lcncz9x84TwGbDJT/EfXivudV3chSHZ5G1D7HWulvxMTap4tfM2eMXeGbge4mqkJJ7lCd3Vey2PLGiO2FU320kDpKbCXNzRqzIzq2qtBOL57+cudBB9MyH0mVgL8jE51K6vS9njorVckqZ7qz/HXLSIf9NoHvFmVZ5C97svIYX0JV7SHkyYcdPxyncsKOAAI16elmFvQ7TMwC/KIwSwhNDX5nf9G73yoftp3ItpXnoHGTCLfBZSFtiy3pmaE1o=
