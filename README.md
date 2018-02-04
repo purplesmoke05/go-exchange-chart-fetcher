@@ -24,6 +24,7 @@ git clone github.com/airking05/go-exchange-chart-fetcher
 
 ```bash
 cd go-exchange-chart-fetcher
+make glide
 cp config_sample.yml config.yml
 nano config.yml
 // edit mysql connector setting
