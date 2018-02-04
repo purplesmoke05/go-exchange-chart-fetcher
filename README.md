@@ -1,3 +1,8 @@
+[![Build Status](https://secure.travis-ci.org/airking05/go-exchange-chart-fetcher.png?branch=master)](http://travis-ci.org/airking05/go-exchange-chart-fetcher)
+[![Coverage Status](https://coveralls.io/repos/airking05/go-exchange-chart-fetcher/badge.svg?branch=master)](https://coveralls.io/r/airking05/go-exchange-chart-fetcher?branch=master)
+[![GoDoc](https://godoc.org/github.com/airking05/go-exchange-chart-fetcher?status.svg)](https://godoc.org/github.com/airking05/go-exchange-chart-fetcher)
+[![license](https://img.shields.io/badge/license-MIT-4183c4.svg)](https://github.com/airking05/go-exchange-chart-fetcher/blob/master/LICENSE)
+
 Go-exchange-chart-fetcher is a small server for "Fetching CryptoCurrency Data", implemented by golang.
 It's pretty much stable server.
 
