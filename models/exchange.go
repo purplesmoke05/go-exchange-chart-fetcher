@@ -4,9 +4,9 @@ package models
 type ExchangeID int
 
 const (
-	Bitflyer ExchangeID = iota + 1
-	Poloniex
+	Poloniex ExchangeID = iota + 1
 	Hitbtc
+	Bitflyer
 
 	UnknownExchange
 )

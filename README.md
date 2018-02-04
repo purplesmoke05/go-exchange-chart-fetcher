@@ -12,9 +12,10 @@ git clone github.com/airking05/go-exchange-chart-fetcher
 - this is a tool for fetching chart data.
 - the data can be used for machine learning or so...
 
-| Poloniex       	| Hitbtc          	| Bitflyer     	| Binance 	| Zaif 	|
-|----------------	|-----------------	|--------------	|---------	|------	|
-| Done(99 paris) 	| Done(421 paris) 	| Done(1 pair) 	|         	|      	|
+|        	| Poloniex       	| Hitbtc          	| Bitflyer     	| Binance 	| Zaif 	|
+|--------	|----------------	|-----------------	|--------------	|---------	|------	|
+| ID     	| 1              	| 2               	| 3            	|         	|      	|
+| Status 	| Done(99 paris) 	| Done(421 paris) 	| Done(1 pair) 	|         	|      	|
 
 ![fetched_data](https://i.imgur.com/Qt4gUf9.png)
 
