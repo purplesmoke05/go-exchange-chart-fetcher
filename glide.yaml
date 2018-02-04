@@ -1,0 +1,6 @@
+package: github.com/airking05/go-exchange-chart-fetcher
+import:
+- package: github.com/jinzhu/gorm
+  version: v1.0
+  subpackages:
+  - dialects/mysql
