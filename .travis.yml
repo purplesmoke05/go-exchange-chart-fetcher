@@ -1,0 +1,34 @@
+language: go
+sudo: false
+go:
+  - 1.8
+  - 1.9
+  - tip
+
+matrix:
+  allow_failures:
+    - go: tip
+
+before_install:
+  - curl https://glide.sh/get | sh
+
+install:
+  - make glide
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/modocache/gover
+  - go get github.com/mattn/goveralls
+  - go get honnef.co/go/tools/cmd/gosimple
+  - go get honnef.co/go/tools/cmd/unused
+  - go get honnef.co/go/tools/cmd/staticcheck
+  - go get -v -t ./...
+
+script:
+  - go vet $(go list ./... | grep -v /vendor/)
+  - unused $(go list ./... | grep -v /vendor/)
+  - gosimple $(go list ./... | grep -v /vendor/)
+  - staticcheck $(go list ./... | grep -v /vendor/)
+  - go test -cover -coverpkg github.com/airking05/go-exchange-chart-fetcher -coverprofile go-ffprobe.cov
+
+after_script:
+  - gover
+  - goveralls -coverprofile=gover.coverprofile -repotoken $COVERALLS_TOKEN
