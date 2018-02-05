@@ -9,7 +9,7 @@ It's pretty much stable server.
 ## How to Install :
 
 ```bash
-git clone github.com/airking05/go-exchange-chart-fetcher
+go get github.com/airking05/go-exchange-chart-fetcher
 ```
 
 ## What is this :
@@ -26,30 +26,39 @@ git clone github.com/airking05/go-exchange-chart-fetcher
 
 ## How to Use :
 
-### make config.yml
+```Go
+package main
+import(
+	"github.com/jinzhu/gorm"
+	"github.com/airking05/go-exchange-chart-fetcher/models"
+	"github.com/airking05/go-exchange-chart-fetcher/server"
+)
+
+// declare exchanges you want to fetch
+var ExchangeIDs = []models.ExchangeID{
+	models.Bitflyer,
+	models.Poloniex,
+	models.Hitbtc,
+}
+
+func main() {
+	dbConf := "mysql:mysql@tcp(localhost:3306)/chart_fetcher?charset=utf8&parseTime=True&loc=UTC"
+    // setup DB
+    db, err := gorm.Open("mysql", dbConf)
+    if err != nil {
+        panic("failed to connect db")
+    }
+    db.AutoMigrate(&models.Chart{})
+    
+    // then start server!
+    server := server.NewServer(ExchangeIDs, db)
+    server.Run()
+}
+```
+
+### running server
 
 ```bash
-cd go-exchange-chart-fetcher
-make glide
-cp config_sample.yml config.yml
-nano config.yml
-// edit mysql connector setting
-```
-
-### config.yml
-
-write your DB connection setting
-```
-debug: false
-test: false
-db_connection: mysql:mysql@tcp(localhost:3306)/chart_fetcher?charset=utf8&parseTime=True&loc=UTC
-```
-
-### run server
-
-```bash
-go run *.go config.yml
-
 2018-02-04T18:50:40.918+0900	INFO	go-exchange-chart-fetcher/main.go:51	starting chart_server...
 2018-02-04T18:50:40.918+0900	INFO	go-exchange-chart-fetcher/server.go:31	checking currecy pairs updates
 2018-02-04T18:50:40.918+0900	INFO	go-exchange-chart-fetcher/server.go:192	starting chart writer...
