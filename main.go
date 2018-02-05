@@ -1,4 +1,4 @@
-package go_exchange_chart_fetcher
+package main
 
 import (
 	"github.com/jinzhu/gorm"

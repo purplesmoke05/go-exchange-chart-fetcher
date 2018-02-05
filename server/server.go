@@ -19,6 +19,7 @@ func NewServer(eIds []models.ExchangeID, db *gorm.DB) *Server {
 			continue
 		}
 		eapis = append(eapis, ea)
+
 	}
 	return &Server{
 		eapis:    eapis,
@@ -110,8 +111,8 @@ type DurationPairWatcher struct {
 
 func (w *DurationPairWatcher) Start() {
 	go func() {
-		intervalTick := time.Tick(w.interval)
-		durationTick := time.Tick(w.duration)
+		intervalTick := time.NewTicker(w.interval)
+		durationTick := time.NewTicker(w.duration)
 		if w.interval >= w.duration {
 			logger.Get().Fatalf("assertion error: interval(%d) >= duration(%d)",
 				w.interval, w.duration)
@@ -137,7 +138,7 @@ func (w *DurationPairWatcher) Start() {
 
 		for {
 			select {
-			case <-intervalTick:
+			case <-intervalTick.C:
 				rate, err := w.eapi.Rate(w.pair.Trading, w.pair.Settlement)
 				if err != nil {
 					logger.Get().Errorf("rate not found: %s", err)
@@ -145,7 +146,7 @@ func (w *DurationPairWatcher) Start() {
 				}
 				high = math.Max(high, rate)
 				low = math.Min(low, rate)
-			case <-durationTick:
+			case <-durationTick.C:
 				rate, err := w.eapi.Rate(w.pair.Trading, w.pair.Settlement)
 				if err != nil {
 					logger.Get().Errorf("rate not found: %s", err)
