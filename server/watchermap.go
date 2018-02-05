@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"github.com/airking05/go-exchange-chart-fetcher/api"

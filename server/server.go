@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"math"
@@ -10,7 +10,16 @@ import (
 	"github.com/airking05/go-exchange-chart-fetcher/models"
 )
 
-func NewServer(eapis []api.ExchangeApi, db *gorm.DB) *Server {
+func NewServer(eIds []models.ExchangeID, db *gorm.DB) *Server {
+	var eapis []api.ExchangeApi
+	for _, exchangeId := range eIds {
+		ea, err := api.NewExchangeAPI(exchangeId)
+		if err != nil {
+			logger.Get().Info(err)
+			continue
+		}
+		eapis = append(eapis, ea)
+	}
 	return &Server{
 		eapis:    eapis,
 		watchers: make(watcherMap),

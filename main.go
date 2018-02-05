@@ -9,8 +9,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/airking05/go-exchange-chart-fetcher/config"
 	"github.com/airking05/go-exchange-chart-fetcher/models"
-	"github.com/airking05/go-exchange-chart-fetcher/logger"
-	"github.com/airking05/go-exchange-chart-fetcher/api"
+	"github.com/airking05/go-exchange-chart-fetcher/server"
 )
 
 func help_and_exit() {
@@ -30,16 +29,6 @@ func main() {
 	confPath := os.Args[1]
 
 	conf := config.ReadConfig(confPath)
-	var eapis []api.ExchangeApi
-	for _, exchangeId := range ExchangeIDs {
-		ea, err := api.NewExchangeAPI(exchangeId)
-		if err != nil {
-			logger.Get().Info(err)
-			continue
-		}
-		eapis = append(eapis, ea)
-
-	}
 
 	db, err := gorm.Open("mysql", conf.DBConnection)
 	if err != nil {
@@ -47,7 +36,6 @@ func main() {
 	}
 	db.AutoMigrate(&models.Chart{})
 
-	server := NewServer(eapis, db)
-	logger.Get().Info("starting chart_server...")
+	server := server.NewServer(ExchangeIDs, db)
 	server.Run()
 }
