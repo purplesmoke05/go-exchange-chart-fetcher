@@ -21,7 +21,7 @@ script:
 - go vet $(go list ./... | grep -v /vendor/)
 - gosimple $(go list ./... | grep -v /vendor/)
 - staticcheck $(go list ./... | grep -v /vendor/)
-- go test -cover -coverpkg=./... ./... -coverprofile
+- go test -cover -coverpkg=./... -coverprofile
   go-exchange-chart-fetcher.cov
 after_script:
 - gover
