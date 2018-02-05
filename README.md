@@ -6,13 +6,13 @@
 Go-exchange-chart-fetcher is a small server for "Fetching CryptoCurrency Data", implemented by golang.
 It's pretty much stable server.
 
-## How to Install :
+# How to Install :
 
 ```bash
 go get github.com/airking05/go-exchange-chart-fetcher
 ```
 
-## What is this :
+# What is this :
 
 - this is a tool for fetching chart data.
 - the data can be used for machine learning or so...
@@ -24,15 +24,18 @@ go get github.com/airking05/go-exchange-chart-fetcher
 
 ![fetched_data](https://i.imgur.com/Qt4gUf9.png)
 
-## How to Use :
+# How to Use :
 
 ```Go
 package main
+
+
 import(
 	"github.com/jinzhu/gorm"
 	"github.com/airking05/go-exchange-chart-fetcher/models"
 	"github.com/airking05/go-exchange-chart-fetcher/server"
 )
+
 
 // declare exchanges you want to fetch
 var ExchangeIDs = []models.ExchangeID{
@@ -41,22 +44,24 @@ var ExchangeIDs = []models.ExchangeID{
 	models.Hitbtc,
 }
 
+
 func main() {
-	dbConf := "mysql:mysql@tcp(localhost:3306)/chart_fetcher?charset=utf8&parseTime=True&loc=UTC"
-    // setup DB
+// setup DB
+    dbConf := "mysql:mysql@tcp(localhost:3306)/chart_fetcher?charset=utf8&parseTime=True&loc=UTC"
     db, err := gorm.Open("mysql", dbConf)
     if err != nil {
         panic("failed to connect db")
     }
     db.AutoMigrate(&models.Chart{})
+
     
-    // then start server!
+// then start server!
     server := server.NewServer(ExchangeIDs, db)
     server.Run()
 }
 ```
 
-### running server
+# running server
 
 ```bash
 2018-02-04T18:50:40.918+0900	INFO	go-exchange-chart-fetcher/main.go:51	starting chart_server...
