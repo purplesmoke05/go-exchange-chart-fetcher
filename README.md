@@ -6,12 +6,6 @@
 Go-exchange-chart-fetcher is a small server for "Fetching CryptoCurrency Data", implemented by golang.
 It's pretty much stable server.
 
-# How to Install :
-
-```bash
-go get github.com/airking05/go-exchange-chart-fetcher
-```
-
 # What is this :
 
 - this is a tool for fetching chart data.
@@ -23,6 +17,12 @@ go get github.com/airking05/go-exchange-chart-fetcher
 | Status 	| Done(99 paris) 	| Done(421 paris) 	| Done(1 pair) 	|         	|      	|
 
 ![fetched_data](https://i.imgur.com/Qt4gUf9.png)
+
+# How to Install :
+
+```bash
+go get github.com/airking05/go-exchange-chart-fetcher
+```
 
 # How to Use :
 
