@@ -7,6 +7,7 @@ const (
 	Poloniex ExchangeID = iota + 1
 	Hitbtc
 	Bitflyer
+	Binance
 
 	UnknownExchange
 )

@@ -6,9 +6,9 @@ import (
 	"fmt"
 )
 
-const _ExchangeID_name = "BitflyerPoloniexHitbtcUnknownExchange"
+const _ExchangeID_name = "PoloniexHitbtcBitflyerBinanceUnknownExchange"
 
-var _ExchangeID_index = [...]uint8{0, 8, 16, 22, 37}
+var _ExchangeID_index = [...]uint8{0, 8, 14, 22, 29, 44}
 
 func (i ExchangeID) String() string {
 	i -= 1
@@ -20,9 +20,10 @@ func (i ExchangeID) String() string {
 
 var _ExchangeIDNameToValue_map = map[string]ExchangeID{
 	_ExchangeID_name[0:8]:   1,
-	_ExchangeID_name[8:16]:  2,
-	_ExchangeID_name[16:22]: 3,
-	_ExchangeID_name[22:37]: 4,
+	_ExchangeID_name[8:14]:  2,
+	_ExchangeID_name[14:22]: 3,
+	_ExchangeID_name[22:29]: 4,
+	_ExchangeID_name[29:44]: 5,
 }
 
 func ExchangeIDString(s string) (ExchangeID, error) {
